@@ -38,7 +38,7 @@ You need to include an additional `.js` file in your overviewer index.html page 
 
 4. Install **odp** as a service and run at startup
 
-   Copy `odp.sh` and **edit the host and secret** to match your rcon server
+   **edit the host and secret** in `odp.sh` to match your rcon server
 
    ```bash
    sudo chmod +x /usr/local/src/overviewer-player-data/odp.sh
