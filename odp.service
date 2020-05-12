@@ -3,7 +3,9 @@ Description=Overviewer player data service.
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /usr/local/src/overviewer-player-data/odp.sh
+User=minecraft
+ExecStart=/usr/local/src/overviewer-player-data/odp.sh
 
 [Install]
 WantedBy=multi-user.target
+
