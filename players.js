@@ -2,7 +2,7 @@ window.PlayerLocations = {
   dataURL: "players.json",
   debug: false,
   playerMarkers: {},
-  refreshSeconds: 3,
+  refreshSeconds: 60,
 
   createPlayerMarkers: (list) => {
     for (let playerName in window.PlayerLocations.playerMarkers) {
