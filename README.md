@@ -4,14 +4,14 @@ Writes player data to a json file every 60 seconds so you can see realtime posit
 
 ## Installation
 
+### Quick Install
+
 Requirements
 
 1. **Expects your user to be called `minecraft`**
 2. **Expects your overviewer html to be in `/opt/msm/html`**
 
 If those don't apply, do the manual install.
-
-### Quick Install
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/aphexddb/overviewer-player-data/master/install.sh | bash
