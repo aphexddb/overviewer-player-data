@@ -19,7 +19,7 @@ fi
 cd overviewer-player-data
 sudo chmod +x /usr/local/src/overviewer-player-data/odp.sh
 sudo make
-rm /usr/local/bin/odp || true
+sudo rm /usr/local/bin/odp || true
 sudo ln -s /usr/local/src/overviewer-player-data/odp /usr/local/bin/odp
 
 mkdir -p /opt/msm/html
