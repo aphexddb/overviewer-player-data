@@ -60,6 +60,7 @@ window.PlayerLocations = {
       window.PlayerLocations.load,
       window.PlayerLocations.refreshSeconds * 1000
     );
+    window.PlayerLocations.load();
   },
 
   load: () => {
