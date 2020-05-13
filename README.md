@@ -4,9 +4,18 @@ Writes player data to a json file every 60 seconds so you can see realtime posit
 
 ## Installation
 
-You need to include an additional `.js` file in your overviewer index.html page and install the app.
+Requirements
 
-**Expects your user to be called `minecraft`**
+1. **Expects your user to be called `minecraft`**
+2. **Expects your overviewer html to be in `/opt/msm/html`**
+
+### Quick Install
+
+```bash
+curl -sSL https://github.com/aphexddb/overviewer-player-data/blob/master/install.sh | bash
+```
+
+### Manual Install
 
 1. Install the app on your minecraft server. This example assumed Ubuntu.
 
