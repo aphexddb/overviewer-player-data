@@ -6,5 +6,5 @@ if [[ `id -nu` != "minecraft" ]];then
   exit 1
 fi
 
-odp -file /opt/msm/html/players.json-host minecraft.aphexddb.com -password YOUR_RCON_SECRET_HERE
+odp -file /opt/msm/html/players.json -host localhost -password YOUR_RCON_SECRET_HERE
 
