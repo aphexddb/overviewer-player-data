@@ -1,6 +1,6 @@
 # overviewer data for players (odp)
 
-Writes player data to a json file every 60 seconds so you can see realtime positions on [overviewer](https://overviewer.org/).
+Writes player data to a json file every 60 seconds so you can see realtime positions on [overviewer](https://overviewer.org/). Provides a javascript file for overviewer to load this data into Leaflet.
 
 ## Installation
 
@@ -8,6 +8,8 @@ Requirements
 
 1. **Expects your user to be called `minecraft`**
 2. **Expects your overviewer html to be in `/opt/msm/html`**
+
+If those don't apply, do the manual install.
 
 ### Quick Install
 
