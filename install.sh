@@ -10,7 +10,12 @@ sudo apt install -y golang-go git
 echo "Installing ODP"
 
 cd /usr/local/src
-sudo git clone https://github.com/aphexddb/overviewer-player-data.git || true
+
+folder="/usr/local/src/overviewer-player-data"
+if ! git clone https://github.com/aphexddb/overviewer-player-data.git "${folder}" 2>/dev/null && [ -d "${folder}" ] ; then
+    echo "Clone failed because the folder ${folder} exists"
+fi
+
 cd overviewer-player-data
 sudo chmod +x /usr/local/src/overviewer-player-data/odp.sh
 sudo make
