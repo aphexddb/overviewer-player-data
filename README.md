@@ -12,7 +12,7 @@ Requirements
 ### Quick Install
 
 ```bash
-curl -sSL https://github.com/aphexddb/overviewer-player-data/blob/master/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/aphexddb/overviewer-player-data/master/install.sh | bash
 ```
 
 ### Manual Install

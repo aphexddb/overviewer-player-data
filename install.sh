@@ -10,10 +10,11 @@ sudo apt install -y golang-go git
 echo "Installing ODP"
 
 cd /usr/local/src
-sudo git clone https://github.com/aphexddb/overviewer-player-data.git
+sudo git clone https://github.com/aphexddb/overviewer-player-data.git || true
 cd overviewer-player-data
 sudo chmod +x /usr/local/src/overviewer-player-data/odp.sh
 sudo make
+rm /usr/local/bin/odp || true
 sudo ln -s /usr/local/src/overviewer-player-data/odp /usr/local/bin/odp
 
 mkdir -p /opt/msm/html
