@@ -4,10 +4,6 @@ import (
 	"testing"
 )
 
-// func init() {
-// 	flag.Parse()
-// }
-
 func TestPlayersFromList(t *testing.T) {
 	resp := "There are 2 of a max 20 players online: aphexddb, jasonbutler42"
 
@@ -61,6 +57,25 @@ func TestPlayerDimensionFromData(t *testing.T) {
 
 	if dimension != 0 {
 		t.Errorf("dimension is %v; want 0", dimension)
+	}
+
+}
+
+func TestIsDisconnected(t *testing.T) {
+	msg1 := "Command 'list' failed write tcp 192.168.1.1:57942"
+	msg2 := "Command 'list' failed write tcp 255.255.255.255:60974->255.255.255.255:25575: write: broken pipe"
+	msg3 := "Command 'list' failed write tcp 255.255.255.255:60974->255.255.255.255:25575: use of closed network connection"
+
+	if isDisconnected(msg1) == true {
+		t.Errorf("'%s' is true; want false", msg1)
+	}
+
+	if isDisconnected(msg2) == false {
+		t.Errorf("'%s' is false; want true", msg2)
+	}
+
+	if isDisconnected(msg3) == false {
+		t.Errorf("'%s' is false; want true", msg3)
 	}
 
 }

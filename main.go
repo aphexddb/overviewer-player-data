@@ -45,15 +45,7 @@ type PlayerInfo struct {
 	AvatarURL string    `json:"avatar_url"`
 }
 
-func main() {
-
-	flag.Parse()
-
-	conn := new(mcrcon.MCConn)
-	defer conn.Close()
-
-	addr := fmt.Sprintf("%s:%v", host, port)
-
+func connect(conn *mcrcon.MCConn, addr string) {
 	dialErr := conn.Open(addr, password)
 	if dialErr != nil {
 		log.Printf("Connect to %s failed %v", addr, dialErr)
@@ -65,20 +57,37 @@ func main() {
 		log.Printf("Authentication to %s failed %v", addr, authErr)
 		os.Exit(1)
 	}
+}
 
-	c := rcon{
-		seconds: seconds,
-		conn:    conn,
-		debug:   debug,
-	}
+func main() {
+
+	flag.Parse()
+
+	conn := new(mcrcon.MCConn)
+	defer conn.Close()
+
+	addr := fmt.Sprintf("%s:%v", host, port)
+	connect(conn, addr)
 
 	done := make(chan bool)
+	disconnected := make(chan bool)
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM, syscall.SIGKILL)
+
+	c := rcon{
+		seconds:      seconds,
+		conn:         conn,
+		debug:        debug,
+		disconnected: disconnected,
+	}
 
 	go func() {
 		for {
 			select {
+			case <-disconnected:
+				log.Println("Potential connection issue, reconnecting")
+				connect(conn, addr)
+				break
 			case sig := <-stop:
 				log.Println("Received", sig, "signal")
 				done <- true

@@ -13,9 +13,10 @@ import (
 )
 
 type rcon struct {
-	seconds int
-	conn    *mcrcon.MCConn
-	debug   bool
+	seconds      int
+	conn         *mcrcon.MCConn
+	debug        bool
+	disconnected chan bool
 }
 
 type PlayerPos struct {
@@ -78,10 +79,21 @@ func (c *rcon) start(done <-chan bool) {
 func (c *rcon) cmd(cmd string) string {
 	resp, err := c.conn.SendCommand(cmd)
 	if err != nil {
+		if isDisconnected(err.Error()) {
+			c.disconnected <- true
+		}
 		log.Printf("Command '%s' failed %s", cmd, err)
 		return ""
 	}
 	return resp
+}
+
+func isDisconnected(msg string) bool {
+	if strings.Contains(msg, "broken pipe") || strings.Contains(msg, "closed network connection") {
+		return true
+	}
+
+	return false
 }
 
 func playersFromList(list string) []string {
